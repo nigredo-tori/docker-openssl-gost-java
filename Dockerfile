@@ -8,6 +8,8 @@ FROM scratch
 COPY --from=0 / /
 
 # RUN apk add --no-cache openjdk8-jre-base
-RUN apt update && \
+# https://github.com/tianon/docker-brew-debian/issues/65
+RUN mkdir /usr/share/man/man1 && \
+  apt update && \
   apt install -y openjdk-8-jre-headless \
   && rm -rf /var/lib/apt/lists/*
